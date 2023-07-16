@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<titel>h</titel>
+	<title>h</title>
 </head>
 <body>
 <p>
@@ -83,14 +83,20 @@
         console.log(calculation);
       ">Clear</button>
 </p>
+<p class="js-output"></p>
 
 <script>
 
 	let calculation = localStorage.getItem('calculation') || '';
 
+	function showResult() {
+
+	}
 	function updateCalculation(value) {
 		calculation += value;
 		console.log(calculation);
+
+		document.querySelector('.js-output').innerHTML = `-> ${calculation}`;
 		localStorage.setItem( 'calculation', calculation );
 	}
 </script>
