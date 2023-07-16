@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Variables</title>
+</head>
+<body>
+<h2>Cart Quantity</h2>
+<button onclick="
+  console.log('Cart quantity: ' + quantity);
+">
+  Show Quantity
+</button>
+<button onclick="
+  quantity += 1;
+  console.log('Cart quantity: ' + quantity);
+">
+  Add to cart
+</button>
+<button onclick="
+  quantity +=2;
+  console.log('Cart quantity: ' + quantity);
+">
+  +2
+</button>
+<button onclick="
+  quantity -= 1;
+  if ( quantity < 0 ){
+    quantity = 0;
+    alert(`Nicht genug items
+nicht aktualisiert` )
+  }
+  console.log('Cart quantity: ' + quantity);
+">
+  -1
+</button>
+<button onclick="
+  quantity = 0;
+  console.log('Cart was reset');
+  console.log('Cart quantity: ' + quantity);
+">
+  reset cart
+</button>
+<script>
+  let quantity = 0;
+</script>
+</body>
+</html>

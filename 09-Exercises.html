@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Tests</title>
+</head>
+<body>
+
+
+</body>
+<input class="js-name-input" placeholder="Name" type="text" onkeydown="if(event.key === 'Enter'){submitInput()}">
+<button onclick="submitInput()">
+
+	Submit
+</button>
+
+<p class="js-print-name"></p>
+
+<script>
+function submitInput() {
+	const name = document.querySelector( ".js-name-input" ).value;
+	const printName = document.querySelector( '.js-print-name' );
+	printName.innerHTML = `Dein Name scheint ${name} zu sein...`;
+}
+
+</script>
+</html>

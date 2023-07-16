@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <titel>8i</titel>
+</head>
+<body>
+<button onclick="
+	for(let i = 0; i < 1000; i++) {
+	  playGame('heads')
+	};
+">heads
+</button>
+<button onclick="
+	for(let i = 0; i < 1000; i++) {
+		playGame('tails');
+	};
+">tails
+</button>
+<script>
+    let score = JSON.parse(localStorage.getItem('score')) || {wins: 0, losses: 0};
+
+    function playGame(guess) {
+        const randomNumber = Math.random();
+        const result = randomNumber < 0.5 ? 'heads' : 'tails';
+
+        let decision = guess === result ? 'You win!' : 'You lose!';
+        decision === 'You win!' ? score.wins++ : score.losses++;
+        localStorage.setItem('score', JSON.stringify(score));
+
+        console.clear();
+        console.log(decision);
+        console.log(`${score.wins} x gewonnen und ${score.losses} x verloren.`)
+    }
+</script>
+</body>
+</html>

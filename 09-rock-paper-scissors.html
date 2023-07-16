@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Rock Paper Scissors</title>
+</head>
+
+<body>
+<p>Rock Paper Scissors</p>
+<button onclick="
+      playGame(moveTexts.rock);
+    ">Rock
+</button>
+
+<button onclick="
+      playGame(moveTexts.paper);
+    ">Paper
+</button>
+
+<button onclick="
+for(let i = 0; i < 100; i++) {
+      playGame(moveTexts.scissors);
+  }
+    ">Scissors
+</button>
+
+<!--
+<button onclick="
+      playGame(moveTexts.scissors);
+    ">Scissors
+</button>
+-->
+
+<p class="js-decisson"></p>
+<p class="js-evaluation"></p>
+<p class="js-score"></p>
+
+<button onclick="
+      resetScore();
+    ">Reset Score
+</button>
+
+<p class="js-reset-score"></p>
+
+<script>
+
+	const resultTexts = {
+		lose: 'Mist: Du hast verloren.',
+		win: 'Juchuuh, Du hast gewonnen.',
+		tie: 'tja: unentschieden.'
+	};
+
+	const moveTexts = {
+		scissors: 'Schere',
+		rock: 'Stein',
+		paper: 'Papier'
+	};
+
+	let score = JSON.parse( localStorage.getItem( 'score' ) )
+			|| {
+				wins: 0,
+				losses: 0,
+				ties: 0
+			};
+
+	showScore();
+
+	function playGame(playerMove) {
+		console.clear();
+
+		const computerMove = pickComputerMove(); // 1. Computer randomly selects a move
+
+		let result = '';
+
+		if ( playerMove === moveTexts.scissors ) {  // 2. Compare the moves to get the result
+			if ( computerMove === moveTexts.rock ) {
+				result = resultTexts.lose;
+			}
+			else if ( computerMove === moveTexts.paper ) {
+				result = resultTexts.win;
+			}
+			else if ( computerMove === moveTexts.scissors ) {
+				result = resultTexts.tie;
+			}
+
+		}
+
+		else if ( playerMove === moveTexts.paper ) {
+			if ( computerMove === moveTexts.rock ) {
+				result = resultTexts.win;
+			}
+			else if ( computerMove === moveTexts.paper ) {
+				result = resultTexts.tie;
+			}
+			else if ( computerMove === moveTexts.scissors ) {
+				result = resultTexts.lose;
+			}
+
+		}
+		else if ( playerMove === moveTexts.rock ) {
+			if ( computerMove === moveTexts.rock ) {
+				result = resultTexts.tie;
+			}
+			else if ( computerMove === moveTexts.paper ) {
+				result = resultTexts.lose;
+			}
+			else if ( computerMove === moveTexts.scissors ) {
+				result = resultTexts.win;
+			}
+		}
+
+		// 3. Update a score
+		updateScore( result );
+
+		localStorage.setItem( 'score', JSON.stringify( score ) );
+
+		console.log( `You picked ${playerMove}. Computer picked ${computerMove}. ${result}` ); // 4. Display the result
+		showDecission( result );
+		console.log( `You ${playerMove} - ${computerMove} Computer` );
+		showEvaluation( playerMove, computerMove );
+		console.log( `Wins: ${score.wins}, Losses ${score.losses}, Ties: ${score.ties}` );
+		showScore();
+	}
+
+	function showDecission(result = null) {
+		const decission = document.querySelector( '.js-decisson' );
+		decission.innerHTML = result;
+	}
+
+	function showEvaluation(playerMove, computerMove) {
+		const evaluation = document.querySelector( '.js-evaluation' );
+		evaluation.innerHTML = `(Du) ${playerMove} <--> ${computerMove} (Computer)`;
+	}
+
+	function showScore() {
+		const result = document.querySelector( '.js-score' );
+		result.innerHTML = `Wins: ${score.wins}, Losses ${score.losses}, Ties: ${score.ties}`;
+	}
+
+	function updateScore(result) {
+		if ( result === resultTexts.win ) {
+			score.wins++;
+		}
+		else if ( result === resultTexts.tie ) {
+			score.ties++;
+		}
+		else if ( result === resultTexts.lose ) {
+			score.losses++;
+		}
+	}
+
+	function resetScore() {
+		score.wins = 0;
+		score.losses = 0;
+		score.ties = 0;
+
+		localStorage.removeItem( 'score' );
+		const resetElement = document.querySelector( '.js-reset-score' );
+		resetElement.innerHTML = 'Score has been reset';
+		showDecission();
+		showEvaluation( '', '' );
+		showScore();
+		console.log( 'Score has been reset' );
+	}
+
+	function pickComputerMove() {
+		const randomNumber = Math.random();
+
+		let computerMove = '';
+
+		if ( randomNumber >= 0 && randomNumber < 1 / 3 ) {
+			computerMove = moveTexts.rock;
+		}
+		else if ( randomNumber >= 1 / 3 && randomNumber < 2 / 3 ) {
+			computerMove = moveTexts.paper;
+		}
+		else if ( randomNumber >= 2 / 3 && randomNumber < 1 ) {
+			computerMove = moveTexts.scissors;
+		}
+		return computerMove;
+	}
+</script>
+</body>
+</html>
