@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests</title>
+    <!--    <script src="https://cdn.tailwindcss.com"></script>-->
+    <link href="/dist/output.css" rel="stylesheet">
+
+</head>
+<body class="font-sans">
+
+<div class="m-12">
+    <div class="w-1/2 flex items-center">
+        <button class="js-test ao-btn-off"
+                onclick="test(this)">Gaming
+        </button>
+        <button class="js-test ao-btn-off"
+                onclick="test(this)">Music
+        </button>
+        <button class="js-test ao-btn-off"
+                onclick="test(this)">Tech
+        </button>
+    </div>
+
+
+</div>
+
+</body>
+
+<script>
+    function test(button) {
+
+        console.log(button.classList);
+        if (button.classList.contains('ao-btn-on')) {
+            button.classList.remove('ao-btn-on');
+            button.classList.add('ao-btn-off');
+        } else {
+            turnOffOnButton();
+            button.classList.toggle('ao-btn-on');
+            button.classList.toggle('ao-btn-off');
+        }
+
+        console.log(button.classList);
+    }
+
+    function turnOffOnButton() {
+        const previousButton = document.querySelector('.ao-btn-on');
+        if (previousButton) {
+            console.log(previousButton.classList.value);
+            previousButton.classList.remove('ao-btn-on');
+            previousButton.classList.add('ao-btn-off');
+        }
+    }
+
+</script>
+</html>

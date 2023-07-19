@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Projects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!--    <link href="/dist/output.css" rel="stylesheet">-->
+</head>
+<body>
+<div class="p-3"><p>You Tube Subscribe Button</p>
+
+    <button class="js-subscribe-button bg-gray-900 font-bold text-gray-50 px-4 py-3 rounded-full m-3 mb-5 shadow-lg"
+            onclick="subscribe()">
+        Subscribe
+    </button>
+
+    <p>Amazon Shipping Calculator</p>
+
+    <p>Orders under $40 = +$10 shipping</p>
+    <p>Orders over $40 = FREE shipping.</p>
+
+    <input class="js-input-cost text-lg p-3 my-3 border" onkeydown="handleCostKeydown(event.key)"
+           placeholder="Cost of order">
+
+    <button class="bg-orange-700 p-3 ms-3 rounded-lg shadow-lg text-gray-50"
+            onclick="calculateShipping()">Calculate
+    </button>
+
+    <p class="js-order-result font-extrabold text-lg p-3 m-5"></p></div>
+</body>
+
+<script>
+    function subscribe() {
+        const subscribeButton = document.querySelector('.js-subscribe-button');
+
+        if (subscribeButton.innerText === 'Subscribe') {
+            subscribeButton.innerHTML = 'Subscribed';
+            subscribeButton.classList.replace('bg-gray-900', 'bg-gray-200');
+            subscribeButton.classList.replace('text-gray-50', 'text-gray-900');
+        } else {
+            subscribeButton.innerHTML = 'Subscribe';
+            subscribeButton.classList.replace('bg-gray-200', 'bg-gray-900');
+            subscribeButton.classList.replace('text-gray-900', 'text-gray-50');
+        }
+    }
+
+    function calculateShipping() {
+        const inputElement = document.querySelector('.js-input-cost');
+
+        const input = Number(inputElement.value);
+
+        const resultElement = document.querySelector('.js-order-result');
+
+        if (input && (input > 0)) {
+            resultElement.classList.remove('text-red-800');
+            input < 40 ? resultElement.innerHTML = `$${input + 10}` : resultElement.innerHTML = `$${input}`;
+        } else if (input) {
+            resultElement.classList.add('text-red-800');
+            resultElement.innerHTML = 'Error: wie soll denn ein Preis $0 oder noch weniger sein?'
+        } else {
+            inputElement.value = null;
+            resultElement.innerHTML = ' ';
+        }
+    }
+
+    function handleCostKeydown(key) {
+        if (key === 'Enter') {
+            calculateShipping();
+        }
+    }
+</script>
+</html>

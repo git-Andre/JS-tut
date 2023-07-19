@@ -10,4 +10,21 @@
         @apply text-lg;
         @apply leading-8;
     }
+
+    .ao-btn-off {
+        @apply px-8 py-3 mx-3 rounded-lg bg-blue-500 text-gray-900 text-lg shadow-lg;
+    }
+    .ao-btn-on {
+        @apply px-8 py-3 mx-3 rounded-lg bg-gray-900 text-gray-50 text-lg;
+    }
+
+    .ao-btn-rounded {
+        @apply py-3 px-5 w-14 text-2xl rounded-full
+    }
+    .ao-btn-gray-rounded {
+        @apply ao-btn-rounded bg-gray-800 text-gray-50
+    }
+    .ao-btn-amber-rounded {
+        @apply ao-btn-rounded bg-amber-400 text-gray-900
+    }
  }
