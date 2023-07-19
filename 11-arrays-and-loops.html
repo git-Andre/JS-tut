@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests</title>
+    <link href="/dist/output.css" rel="stylesheet">
+
+</head>
+<body>
+
+<p>evaluation</p>
+
+<button class="js-test" onclick="test()">
+    Test
+</button>
+
+</body>
+
+<script>
+    const myArray = [10, 20, 30];
+    console.log(myArray.length);
+
+    myArray[0] = 99;
+    console.log(myArray[0]);
+    const secArray = [1, 'hello', true, {name: 'André'}, [1, 2]];
+	console.log(typeof secArray);
+	console.log(Array.isArray(secArray));
+    secArray.push(100);
+    console.log(secArray);
+    secArray.splice(0, 1);
+    console.log(secArray);
+
+</script>
+</html>
