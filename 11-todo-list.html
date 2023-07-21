@@ -3,39 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>Todo List</title>
-    <!--        <link href="/dist/output.css" rel="stylesheet">-->
+    <link href="/dist/output.css" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body>
+<body class="m-5">
 
-<div>
-    <h3>Todo List Practice 1</h3>
-    <div class=" mt-4">
-        <input class="js-input-p1 mt-4 border"
+<div class="m-5 bg-gray-200 p-8">
+    <h3>Todo List</h3>
+    <div class="my-4 sm:w-full lg:w-1/3 my-3 grid grid-cols-12 gap-4">
+        <input class="js-input col-span-6 ao-input"
                placeholder="Todo Name">
-
-        <button class="js-practice-1"
+        <input class="js-input-date col-span-4 ao-input"
+               type="date">
+        <button class="js-practice-1 col-span-2 bg-green-700 text-gray-50 font-bold"
                 onclick="addTodo();">
             Add
         </button>
     </div>
 
-    <h3>Todo List Practice 2</h3>
-    <div class=" mt-4">
-        <input class="js-input-p2 border"
-               placeholder="Todo Name">
+    <div class="js-show-list sm:w-full lg:w-1/3 my-3 grid grid-cols-12 gap-4 align-middle"></div> <!-- mit javascript-->
 
-        <button class="js-practice-1"
-                onclick="renderTodoList();">
-            Add
-        </button>
-    </div>
-    <div class="js-show-list"></div>
 </div>
-
+<div class="js-ao"></div>
 </body>
 
 <script src="js/11-todo-list.js"></script>
-<script>
-</script>
+
 </html>

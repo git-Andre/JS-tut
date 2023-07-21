@@ -1,27 +1,42 @@
-const todoList = ['make dinner', 'wash dishes', 'make some noise'];
+let todoList = [{name: 'make dinner', date: '2023-7-21'},
+    {name: 'wash dishes', date: '2023-7-21'},
+    {name: 'make some noise', date: '2023-7-21'},
+];
 
 renderTodoList();
 
 function addTodo() {
-    const inputElement = document.querySelector('.js-input-p1');
-    todoList.push(inputElement.value);
-    console.log(todoList);
-    inputElement.value = '';
+    const inputNameElement = document.querySelector('.js-input');
+    const inputDateElement = document.querySelector('.js-input-date');
+    todoList.push({name: inputNameElement.value, date: inputDateElement.value});
+    inputNameElement.value = '';
+    inputDateElement.value = '';
+    renderTodoList();
 }
 
 function renderTodoList() {
-    const inputElement = document.querySelector('.js-input-p2');
-    todoList.push(inputElement.value);
-    console.log(todoList);
+    const inputElement = document.querySelector('.js-input');
     inputElement.value = '';
 
-    const todoListElement = document.querySelector('.js-show-list');
+    const todoListDiv = document.querySelector('.js-show-list');
     let todoListHtml = '';
-
-    for (const todoListElement of todoList) {
-        const html = `<p>${todoListElement}</p>`;
+    for (let i = 0; i < todoList.length; i++) {
+        const todoListItem = todoList[i];
+        const html = `
+                <div class="col-span-6 ps-2 h-8 leading-4">${todoListItem.name}</div>
+                <div class="col-span-3 ps-2">${todoListItem.date}</div>
+                <button 
+                class="col-span-3 bg-red-700 text-gray-50 h-8"
+                onclick="
+                    todoList.splice(${i}, 1);
+                    renderTodoList();
+                ">Delete</button>
+            
+        `;
         todoListHtml += html;
     }
-    todoListElement.innerHTML = todoListHtml;
+    // console.log(todoList);
+    // console.log(todoListHtml);
+    todoListDiv.innerHTML = todoListHtml;
 }
 

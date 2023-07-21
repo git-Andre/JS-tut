@@ -9,13 +9,26 @@
 	Stein
 </button>
 <script>
-	let evaluation = undefined && 'Guard Operator'
-	console.log( test );
+	let test = undefined && 'Guard Operator'
+	// console.log( test );
 
 	test = undefined || 'Default Operator'
-	console.log( test );
+	// console.log( test );
 
-	console.log( null && true );
+	// console.log( null && true );
+	console.log( 1 > null ); // true  !!
+	console.log( 1 < null ); // false
+	console.log( -1 < null ); // true
+	console.log( -1 > null ); // false
+	console.log( null > -2 ); // true
+	console.log( null < -2 ); // false
+	console.log( null < 2 ); // true  !!
+	console.log( null > 2 ); // false
+	console.log( 0 < null ); // false
+	console.log( 0 > null ); // false
+	console.log( null > 0 ); // false
+	console.log( null < 0 ); // false
+	console.log( null > null ); // false
 </script>
 </body>
 </html>
