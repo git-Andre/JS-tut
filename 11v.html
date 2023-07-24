@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests</title>
+    <!--	<link href="/dist/output.css" rel="stylesheet">-->
+
+</head>
+<body>
+
+</body>
+
+<script>
+    let resultArray = [];
+
+    for (let i = 1; i <= 20; i++) {
+
+        if (i % 5 === 0 && i % 3 === 0) {
+            resultArray.push ( 'FizzBuzz' );
+            continue;
+        }
+
+        if (i % 3 === 0) {
+            resultArray.push ( 'Fizz' );
+            continue;
+        }
+        if (i % 5 === 0) {
+            resultArray.push ( 'Buzz' );
+            continue;
+        }
+        resultArray.push ( i );
+    }
+    const result = resultArray.join ( ', ' );
+    console.log ( result  );
+
+</script>
+</html>

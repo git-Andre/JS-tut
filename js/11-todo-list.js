@@ -1,7 +1,10 @@
+let todoList =  JSON.parse(localStorage.getItem ( 'todoList' ));
+/*
 let todoList = [{name: 'make dinner', date: '2023-7-21'},
     {name: 'wash dishes', date: '2023-7-21'},
     {name: 'make some noise', date: '2023-7-21'},
 ];
+*/
 
 renderTodoList();
 
@@ -11,6 +14,7 @@ function addTodo() {
     todoList.push({name: inputNameElement.value, date: inputDateElement.value});
     inputNameElement.value = '';
     inputDateElement.value = '';
+    localStorage.setItem ( 'todoList', JSON.stringify ( todoList ) );
     renderTodoList();
 }
 

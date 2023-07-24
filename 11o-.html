@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests</title>
+    <!--	<link href="/dist/output.css" rel="stylesheet">-->
+
+</head>
+<body>
+
+</body>
+
+<script>
+    /*    function checkString(array, word) {
+            let index = -1;
+            for (let i = 0; i < array.length; i++) {
+                if (array[i] === word) {
+                    index = i;
+                    break;
+                }
+            }
+            console.log ( index );
+        }
+
+        checkString ( ['green', 'red', 'blue', 'red',], 'red' );
+        checkString ( ['green', 'red', 'blue', 'red',], 'yellow' );
+        // checkString ( ['hello', 'world', 'search', 'good','search',] );
+        // checkString ( ['not', 'found',] );
+        */
+
+    function removeEgg(foods) {
+        // const result = foods.filter ( food => food !== 'egg' );
+
+        const result = [];
+        let counter = 0;
+        const foodsRevers = foods.slice();
+        foodsRevers.reverse ();
+        for (const food of foodsRevers) {
+            if (food === 'egg' && counter < 2) {
+                    counter++;
+                    continue;
+            }
+            result.push ( food );
+        }
+        return result.reverse();
+    }
+
+    const foods = ['egg', 'apple', 'egg', 'egg', 'ham'];
+    console.log ( removeEgg ( foods ) );
+    console.log ( "53 -> ", foods );
+
+</script>
+</html>
