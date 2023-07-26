@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tests</title>
+    <!--	<link href="/dist/output.css" rel="stylesheet">-->
+
+</head>
+<body>
+<button class="js-start"
+>Start
+</button>
+<button class="js-add"
+>Add to Cart
+</button>
+<p class="js-info"></p>
+</body>
+
+<script>
+    const add = () => {
+        console.log ( 2 + 3 );
+    }
+
+    const fun = () => {
+        console.log ( '12b' );
+    }
+
+    const runTwice = (fun) => {
+        fun ();
+        fun ();
+    }
+
+    runTwice ( fun );
+    runTwice ( add );
+
+    let isStart = true;
+
+    document.querySelector ( '.js-start' ).addEventListener ( 'click', () => toggleButton () );
+    function toggleButton() {
+        const butt = document.querySelector ( '.js-start' );
+        if (isStart) {
+            butt.innerHTML = 'Loaded';
+            setTimeout ( () => {
+                butt.innerHTML = 'Finished';
+            }, 1000 );
+            isStart = false;
+        } else {
+            butt.innerHTML = 'Start';
+            isStart = true;
+        }
+    }
+
+    let timeOutId;
+
+    document.querySelector ( '.js-add' ).addEventListener ( 'click', () => addToCart () );
+    function addToCart() {
+        const infoPara = document.querySelector ( '.js-info' );
+        infoPara.innerHTML = 'added'
+
+        clearTimeout ( timeOutId );
+
+        timeOutId = setTimeout ( () => {
+            infoPara.innerHTML = ''
+            isInfoDisplayed = false;
+        }, 4000 );
+    }
+
+</script>
+</html>

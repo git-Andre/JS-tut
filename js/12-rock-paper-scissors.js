@@ -1,5 +1,5 @@
 const resultTexts = {
-    lose: 'Mist: Du hast verloren.', win: 'Juchuuh, Du hast gewonnen.', tie: '...unentschieden.'
+    lose: 'Mist: verloren.', win: 'Juchuuh, gewonnen.', tie: '...unentschieden.'
 };
 
 const moveTexts = {
@@ -11,6 +11,24 @@ let score = JSON.parse ( localStorage.getItem ( 'score' ) ) || {
 };
 
 showScore ();
+
+document.querySelector ( '.js-rock-button' )
+    .addEventListener ( 'click', () => {
+        playGame ( moveTexts.rock )
+    } );
+document.querySelector ( '.js-paper-button' )
+    .addEventListener ( 'click', () => {
+        playGame ( moveTexts.paper )
+    } );
+document.querySelector ( '.js-scissors-button' )
+    .addEventListener ( 'click', () => {
+        playGame ( moveTexts.scissors )
+    } );
+document.body, addEventListener ( 'keydown', e => {
+    e.key === 'r' && playGame ( moveTexts.rock );
+    e.key === 'p' && playGame ( moveTexts.paper );
+    e.key === 's' && playGame ( moveTexts.scissors );
+} );
 
 function playGame(playerMove) {
     console.clear ();
@@ -93,6 +111,33 @@ function updateScore(result) {
     }
 }
 
+document.querySelector ( '.js-reset' ).addEventListener ( 'click', () => {
+    showConfirmQuery ();
+} );
+document.body.addEventListener ( 'keydown', event => {
+    if (event.key === 'Backspace') {
+        showConfirmQuery ();
+    }
+} );
+
+function showConfirmQuery() {
+    const confirmDiv = document.querySelector ( '.js-confirm-query' );
+    const confirmHtml = `
+            <p>Bist Du sicher, das der Score gelöscht werden soll?
+                <button class="js-ja-button ao-btn-off">Ja</button>
+                <button class="js-nein-button ao-btn bg-red-700">Nein</button>
+            </p>
+            `;
+    confirmDiv.innerHTML = confirmHtml;
+    document.querySelector ( '.js-ja-button' ).addEventListener ( 'click', () => {
+        confirmDiv.innerHTML = '';
+        resetScore ();
+    } );
+    document.querySelector ( '.js-nein-button' ).addEventListener ( 'click', () => {
+        confirmDiv.innerHTML = '';
+    } );
+}
+
 function resetScore() {
     score.wins = 0;
     score.losses = 0;
@@ -123,13 +168,16 @@ function pickComputerMove() {
 let isAutoPlaying = false;
 let intervalId;
 
+document.querySelector ( '.js-auto-play' ).addEventListener ( 'click', () => autoPlay () );
+document.body.addEventListener ( 'keydown', event => event.key === 'a' && autoPlay () );
+
 function autoPlay() {
     const autoButton = document.querySelector ( '.js-auto-play' );
     if (!isAutoPlaying) {
         intervalId = setInterval ( () => {
             const autoMove = pickComputerMove ();
             playGame ( autoMove );
-        }, 1000 );
+        }, 500 );
         isAutoPlaying = true;
         autoButton.innerHTML = 'Stop Play';
     } else {
